@@ -3,7 +3,6 @@ import { GraphQLServer } from "graphql-yoga";
 import logger from "morgan";
 import schema from "./schema";
 import "./passport";
-import { prisma } from "../generated/prisma-client";
 import { authenticateJwt } from "./passport";
 import { isAuthenticated } from "./middlewares";
 // sendSecretMail("gatsby0391@naver.com", "123");

@@ -5,12 +5,13 @@ export default {
     seeFeed: async (_, __, { request, isAuthenticated }) => {
       isAuthenticated(request);
       const { user } = request;
+      console.log(user);
       const following = await prisma
         .user({
           id: user.id
         })
         .following();
-      return prisma.posts({
+      const data = prisma.posts({
         where: {
           user: {
             id_in: [...following.map(user => user.id), user.id]
@@ -18,6 +19,8 @@ export default {
         },
         orderBy: "createdAt_DESC"
       });
+      console.log(data);
+      return data;
     }
   }
 };
